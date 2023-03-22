@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>Dagbog.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #6a8759;}
+.s2 { color: #cc7832;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Dagbog.dart</font>
+</center></td></tr></table>
+<pre>  <span class="s0">import </span><span class="s1">'package:flutter/material.dart'</span><span class="s2">;</span>
+  <span class="s0">import </span><span class="s1">'package:shared_preferences/shared_preferences.dart'</span><span class="s2">;</span>
+
+  <span class="s2">class </span><span class="s0">Dagbog </span><span class="s2">extends </span><span class="s0">StatefulWidget {</span>
+
+
+    <span class="s0">@override</span>
+    <span class="s0">State&lt;Dagbog&gt; createState() =&gt; _DagbogState()</span><span class="s2">;</span>
+  <span class="s0">}</span>
+
+  <span class="s2">class </span><span class="s0">_DagbogState </span><span class="s2">extends </span><span class="s0">State&lt;Dagbog&gt; {</span>
+    <span class="s0">int result = </span><span class="s3">0</span><span class="s2">;</span>
+
+
+    <span class="s0">@override</span>
+    <span class="s2">void </span><span class="s0">initState() {</span>
+      <span class="s2">super</span><span class="s0">.initState()</span><span class="s2">;</span>
+      <span class="s0">_loadSavedResult()</span><span class="s2">;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">void </span><span class="s0">_loadSavedResult() async {</span>
+      <span class="s0">SharedPreferences prefs = await SharedPreferences.getInstance()</span><span class="s2">;</span>
+      <span class="s0">int savedResult = prefs.getInt(</span><span class="s1">'result'</span><span class="s0">) ?? </span><span class="s3">0</span><span class="s2">;</span>
+      <span class="s0">setState(() {</span>
+        <span class="s0">result = savedResult</span><span class="s2">;</span>
+      <span class="s0">})</span><span class="s2">;</span>
+    <span class="s0">}</span>
+
+    <span class="s2">void </span><span class="s0">_saveResult(int result) async {</span>
+      <span class="s0">SharedPreferences prefs = await SharedPreferences.getInstance()</span><span class="s2">;</span>
+      <span class="s0">prefs.setInt(</span><span class="s1">'result'</span><span class="s2">, </span><span class="s0">result)</span><span class="s2">;</span>
+    <span class="s0">}</span>
+    <span class="s2">void </span><span class="s0">_resetResult() {</span>
+      <span class="s0">setState(() {</span>
+        <span class="s0">result = </span><span class="s3">0</span><span class="s2">;</span>
+      <span class="s0">})</span><span class="s2">;</span>
+      <span class="s0">_saveResult(result)</span><span class="s2">;</span>
+    <span class="s0">}</span>
+
+
+
+
+    <span class="s0">@override</span>
+    <span class="s0">Widget build(BuildContext context) {</span>
+      <span class="s2">final </span><span class="s0">args = ModalRoute.of(context)?.settings.arguments</span><span class="s2">;</span>
+      <span class="s2">if </span><span class="s0">(args != </span><span class="s2">null </span><span class="s0">&amp;&amp; args </span><span class="s2">is </span><span class="s0">Map&lt;String</span><span class="s2">, </span><span class="s0">dynamic&gt;) {</span>
+        <span class="s2">final </span><span class="s0">num1 = args[</span><span class="s1">&quot;num1&quot;</span><span class="s0">] as int?</span><span class="s2">;</span>
+        <span class="s2">final </span><span class="s0">num2 = args[</span><span class="s1">&quot;num2&quot;</span><span class="s0">] as int?</span><span class="s2">;</span>
+        <span class="s2">final </span><span class="s0">num3 = args[</span><span class="s1">&quot;num3&quot;</span><span class="s0">] as int?</span><span class="s2">;</span>
+        <span class="s2">if </span><span class="s0">(num1 != </span><span class="s2">null </span><span class="s0">&amp;&amp; num2 != </span><span class="s2">null </span><span class="s0">&amp;&amp; num3 != </span><span class="s2">null</span><span class="s0">) {</span>
+          <span class="s0">setState(() {</span>
+            <span class="s0">result += num1 + num2 + num3</span><span class="s2">;</span>
+          <span class="s0">})</span><span class="s2">;</span>
+          <span class="s0">_saveResult(result)</span><span class="s2">;</span>
+        <span class="s0">}</span>
+      <span class="s0">}</span>
+
+      <span class="s2">return </span><span class="s0">Scaffold(</span>
+        <span class="s0">appBar: AppBar(</span>
+          <span class="s0">backgroundColor: Colors.green</span><span class="s2">,</span>
+          <span class="s0">title: Text(</span><span class="s1">'Kalorier indtaget'</span><span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">body: Center(</span>
+          <span class="s0">child: Text(</span>
+            <span class="s1">'Du har indtaget </span><span class="s0">$result </span><span class="s1">kalorier'</span><span class="s2">,</span>
+            <span class="s0">style: TextStyle(fontSize: </span><span class="s3">24</span><span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+
+        <span class="s0">floatingActionButton:  FloatingActionButton(</span>
+
+
+          <span class="s0">backgroundColor: Colors.red</span><span class="s2">,</span>
+          <span class="s0">onPressed: _resetResult</span><span class="s2">,</span>
+          <span class="s0">child: Text(</span><span class="s1">&quot;Nulstil&quot;</span><span class="s0">)</span><span class="s2">,</span>
+
+        <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">floatingActionButtonLocation: FloatingActionButtonLocation.endFloat</span><span class="s2">,</span>
+
+      <span class="s0">)</span><span class="s2">;</span>
+
+    <span class="s0">}</span>
+  <span class="s0">}</span>
+
+
+</pre>
+</body>
+</html>

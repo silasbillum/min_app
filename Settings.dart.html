@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>Settings.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #6a8759;}
+.s2 { color: #cc7832;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Settings.dart</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">'package:flutter/material.dart'</span><span class="s2">;</span>
+
+
+<span class="s2">class </span><span class="s0">Counter </span><span class="s2">extends </span><span class="s0">StatefulWidget {</span>
+  <span class="s0">@override</span>
+  <span class="s0">_CounterState createState() =&gt; _CounterState()</span><span class="s2">;</span>
+<span class="s0">}</span>
+
+<span class="s2">class </span><span class="s0">_CounterState </span><span class="s2">extends </span><span class="s0">State&lt;Counter&gt; {</span>
+  <span class="s0">int _calories = </span><span class="s3">0</span><span class="s2">;</span>
+
+  <span class="s2">void </span><span class="s0">_incrementCalories(int amount) {</span>
+    <span class="s0">setState(() {</span>
+      <span class="s0">_calories += amount</span><span class="s2">;</span>
+    <span class="s0">})</span><span class="s2">;</span>
+  <span class="s0">}</span>
+
+  <span class="s0">@override</span>
+  <span class="s0">Widget build(BuildContext context) {</span>
+    <span class="s2">return </span><span class="s0">Scaffold(</span>
+      <span class="s0">appBar: AppBar(</span>
+        <span class="s0">backgroundColor: Colors.green</span><span class="s2">,</span>
+        <span class="s0">title: Text(</span><span class="s1">'Calorie Counter'</span><span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">body: Center(</span>
+        <span class="s0">child: Column(</span>
+          <span class="s0">mainAxisAlignment: MainAxisAlignment.center</span><span class="s2">,</span>
+          <span class="s0">children: &lt;Widget&gt;[</span>
+            <span class="s0">Text(</span>
+              <span class="s1">'</span><span class="s0">$_calories</span><span class="s1">'</span><span class="s2">,</span>
+              <span class="s0">style: Theme.of(context).textTheme.headline4</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">SizedBox(height: </span><span class="s3">20</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">ElevatedButton(</span>
+              <span class="s0">style: ButtonStyle(</span>
+                <span class="s0">backgroundColor: MaterialStateProperty.all(Colors.lightGreen)</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">onPressed: () =&gt; _incrementCalories(</span><span class="s3">5</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">child: Text(</span><span class="s1">'Add 5 Calories'</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+
+            <span class="s0">ElevatedButton(</span>
+              <span class="s0">style: ButtonStyle(</span>
+                <span class="s0">backgroundColor: MaterialStateProperty.all(Colors.lightGreen)</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">onPressed: () =&gt; _incrementCalories(</span><span class="s3">50</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">child: Text(</span><span class="s1">'Add 50 Calories'</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">ElevatedButton(</span>
+              <span class="s0">style: ButtonStyle(</span>
+                <span class="s0">backgroundColor: MaterialStateProperty.all(Colors.lightGreen)</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">onPressed: () =&gt; _incrementCalories(</span><span class="s3">100</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">child: Text(</span><span class="s1">'Add 100 Calories'</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">ElevatedButton(</span>
+              <span class="s0">style: ButtonStyle(</span>
+                <span class="s0">backgroundColor: MaterialStateProperty.all(Colors.red)</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">onPressed: () =&gt; _incrementCalories(-</span><span class="s3">5</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">child: Text(</span><span class="s1">'Remove 5 Calories'</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">ElevatedButton(</span>
+              <span class="s0">style: ButtonStyle(</span>
+                <span class="s0">backgroundColor: MaterialStateProperty.all(Colors.red)</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">onPressed: () =&gt; _incrementCalories(-</span><span class="s3">50</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">child: Text(</span><span class="s1">'Remove 50 Calories'</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">]</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">)</span><span class="s2">;</span>
+  <span class="s0">}</span>
+<span class="s0">}</span></pre>
+</body>
+</html>

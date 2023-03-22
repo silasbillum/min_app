@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Aftensmad.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #6a8759;}
+.s2 { color: #cc7832;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Aftensmad.dart</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">'package:flutter/material.dart'</span><span class="s2">;</span>
+
+
+
+
+<span class="s2">class </span><span class="s0">Aftensmad </span><span class="s2">extends </span><span class="s0">StatefulWidget {</span>
+
+
+  <span class="s0">Aftensmad({Key? key</span><span class="s2">,</span><span class="s0">}) : </span><span class="s2">super</span><span class="s0">(key: key)</span><span class="s2">;</span>
+
+  <span class="s0">@override</span>
+  <span class="s0">_AftemsmadState createState() =&gt; _AftemsmadState()</span><span class="s2">;</span>
+<span class="s0">}</span>
+
+<span class="s2">class </span><span class="s0">_AftemsmadState </span><span class="s2">extends </span><span class="s0">State&lt;Aftensmad&gt; {</span>
+  <span class="s0">TextEditingController num1Controller = TextEditingController()</span><span class="s2">;</span>
+  <span class="s0">TextEditingController num2Controller = TextEditingController()</span><span class="s2">;</span>
+  <span class="s0">TextEditingController num3Controller = TextEditingController()</span><span class="s2">;</span>
+
+  <span class="s0">@override</span>
+  <span class="s0">Widget build(BuildContext context) {</span>
+    <span class="s2">return </span><span class="s0">Scaffold(</span>
+      <span class="s0">appBar: AppBar(</span>
+        <span class="s0">backgroundColor: Colors.green</span><span class="s2">,</span>
+        <span class="s0">title: Text(</span><span class="s1">''</span><span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">body: Center(</span>
+        <span class="s0">child: Column(</span>
+          <span class="s0">mainAxisAlignment: MainAxisAlignment.center</span><span class="s2">,</span>
+          <span class="s0">children: [</span>
+            <span class="s0">TextField(</span>
+              <span class="s0">controller: num1Controller</span><span class="s2">,</span>
+              <span class="s0">keyboardType: TextInputType.number</span><span class="s2">,</span>
+              <span class="s0">decoration: InputDecoration(</span>
+                <span class="s0">labelText: </span><span class="s1">'Morgenmad'</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">SizedBox(height: </span><span class="s3">20</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">TextField(</span>
+              <span class="s0">controller: num2Controller</span><span class="s2">,</span>
+              <span class="s0">keyboardType: TextInputType.number</span><span class="s2">,</span>
+              <span class="s0">decoration: InputDecoration(</span>
+                <span class="s0">labelText: </span><span class="s1">'Middagsmad'</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">SizedBox(height: </span><span class="s3">20</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">TextField(</span>
+              <span class="s0">controller: num3Controller</span><span class="s2">,</span>
+              <span class="s0">keyboardType: TextInputType.number</span><span class="s2">,</span>
+              <span class="s0">decoration: InputDecoration(</span>
+                <span class="s0">labelText: </span><span class="s1">'Aftensmad'</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">SizedBox(height: </span><span class="s3">20</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">ElevatedButton(</span>
+              <span class="s0">style: ElevatedButton.styleFrom(</span>
+                <span class="s0">backgroundColor: Colors.green</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">child: Text(</span><span class="s1">'tilføj'</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">onPressed: () {</span>
+                <span class="s0">int num1 = int.tryParse(num1Controller.text) ?? </span><span class="s3">0</span><span class="s2">;</span>
+                <span class="s0">int num2 = int.tryParse(num2Controller.text) ?? </span><span class="s3">0</span><span class="s2">;</span>
+                <span class="s0">int num3 = int.tryParse(num3Controller.text) ?? </span><span class="s3">0</span><span class="s2">;</span>
+                <span class="s0">Navigator.restorablePushNamed(context</span><span class="s2">, </span><span class="s1">'/dagbog'</span><span class="s2">, </span><span class="s0">arguments: {</span>
+                  <span class="s1">'num1'</span><span class="s0">: num1</span><span class="s2">,</span>
+                  <span class="s1">'num2'</span><span class="s0">: num2</span><span class="s2">,</span>
+                  <span class="s1">'num3'</span><span class="s0">: num3</span><span class="s2">,</span>
+                <span class="s0">})</span><span class="s2">;</span>
+              <span class="s0">}</span><span class="s2">,</span>
+
+        <span class="s0">)</span>
+
+
+          <span class="s0">]</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">)</span><span class="s2">;</span>
+  <span class="s0">}</span>
+<span class="s0">}</span></pre>
+</body>
+</html>

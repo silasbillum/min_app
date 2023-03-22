@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Morgenmad.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #6a8759;}
+.s2 { color: #cc7832;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Morgenmad.dart</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">'package:flutter/material.dart'</span><span class="s2">;</span>
+
+<span class="s2">class </span><span class="s0">Morgenmad </span><span class="s2">extends </span><span class="s0">StatefulWidget {</span>
+  <span class="s0">@override</span>
+  <span class="s0">_MorgenmadState createState() =&gt; _MorgenmadState()</span><span class="s2">;</span>
+<span class="s0">}</span>
+
+<span class="s2">class </span><span class="s0">_MorgenmadState </span><span class="s2">extends </span><span class="s0">State&lt;Morgenmad&gt; {</span>
+
+  <span class="s0">TextEditingController num1Controller = TextEditingController()</span><span class="s2">;</span>
+
+  <span class="s0">@override</span>
+  <span class="s0">Widget build(BuildContext context) {</span>
+    <span class="s2">return </span><span class="s0">MaterialApp(</span>
+      <span class="s3">// Add MaterialApp widget with named routes</span>
+      <span class="s3">// and set home to null</span>
+      <span class="s0">home: Scaffold(</span>
+        <span class="s0">appBar: AppBar(</span>
+          <span class="s0">title: Text(</span><span class="s1">'First Page'</span><span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">body: Center(</span>
+          <span class="s0">child: Column(</span>
+            <span class="s0">mainAxisAlignment: MainAxisAlignment.center</span><span class="s2">,</span>
+            <span class="s0">children: [</span>
+              <span class="s0">TextField(</span>
+                <span class="s0">controller: num1Controller</span><span class="s2">,</span>
+                <span class="s0">keyboardType: TextInputType.number</span><span class="s2">,</span>
+                <span class="s0">decoration: InputDecoration(</span>
+                  <span class="s0">labelText: </span><span class="s1">'Enter number 1'</span><span class="s2">,</span>
+                <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">SizedBox(height: </span><span class="s4">20</span><span class="s0">)</span><span class="s2">,</span>
+              <span class="s0">ElevatedButton(</span>
+                <span class="s0">child: Text(</span><span class="s1">'Add numbers'</span><span class="s0">)</span><span class="s2">,</span>
+                <span class="s0">onPressed: () {</span>
+                  <span class="s0">Navigator.pushNamed(context</span><span class="s2">, </span><span class="s1">'/second'</span><span class="s2">, </span><span class="s0">arguments: {</span>
+                    <span class="s1">'num1'</span><span class="s0">: int.parse(num1Controller.text)</span><span class="s2">,</span>
+                  <span class="s0">})</span><span class="s2">;</span>
+                <span class="s0">}</span><span class="s2">,</span>
+              <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">]</span><span class="s2">,</span>
+          <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+
+      <span class="s0">routes: {</span>
+        <span class="s1">'/Middagsmad'</span><span class="s0">: (context) =&gt; MiddagsmadScreen()</span><span class="s2">,</span>
+        <span class="s3">// Define other named routes here</span>
+      <span class="s0">}</span><span class="s2">,</span>
+      <span class="s3">// Other app properties</span>
+    <span class="s0">)</span><span class="s2">;</span>
+  <span class="s0">}</span>
+<span class="s0">}</span>
+
+<span class="s2">class </span><span class="s0">MiddagsmadScreen </span><span class="s2">extends </span><span class="s0">StatelessWidget {</span>
+  <span class="s0">@override</span>
+  <span class="s0">Widget build(BuildContext context) {</span>
+    <span class="s2">final </span><span class="s0">Map arguments = ModalRoute.of(context)!.settings.arguments as Map</span><span class="s2">;</span>
+    <span class="s2">final </span><span class="s0">int num1 = arguments[</span><span class="s1">'num1'</span><span class="s0">] as int</span><span class="s2">;</span>
+
+    <span class="s2">return </span><span class="s0">Scaffold(</span>
+      <span class="s0">appBar: AppBar(</span>
+        <span class="s0">title: Text(</span><span class="s1">'Second Page'</span><span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">body: Center(</span>
+        <span class="s0">child: Column(</span>
+          <span class="s0">mainAxisAlignment: MainAxisAlignment.center</span><span class="s2">,</span>
+          <span class="s0">children: [</span>
+            <span class="s0">Text(</span>
+              <span class="s1">'Number 1: </span><span class="s0">$num1</span><span class="s1">'</span><span class="s2">,</span>
+              <span class="s0">style: TextStyle(fontSize: </span><span class="s4">24</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+          <span class="s0">]</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+      <span class="s0">)</span><span class="s2">,</span>
+    <span class="s0">)</span><span class="s2">;</span>
+  <span class="s0">}</span>
+<span class="s0">}</span></pre>
+</body>
+</html>
